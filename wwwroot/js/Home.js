@@ -1,4 +1,3 @@
-$( function() {
 
   listar();
 
@@ -22,83 +21,7 @@ $( function() {
   
          
   }
-  
-  function crearListado(data) {
-  
-      var contenido = "";
-      contenido += "<span class='dropdown-item dropdown-header'>";
-      contenido += data.length + " Tarea(s) Pendientes</span>";
-      contenido += "<div class='dropdown-divider'></div>";
-      
-  
-      for (var i = 0; i < data.length; i++) {
-  
-          
-          contenido += "<a href='#' class='dropdown-item'>";
-          contenido += "<i class='fas fa-file mr-2'></i> " + data[i]["nombreTarea"] ;
-          contenido += "<span class='float-right text-muted text-sm'>Completar ";
-          contenido += "<input type='checkbox' onclick='TerminaTarea(" + data[i]["idTarea"] + ")'>" ;
-          contenido += "</span>" ;
-          } 
-          contenido += "<div class='dropdown-divider'></div>";
-          contenido += "<a href='#'' class='dropdown-item dropdown-footer'>Ver Todas las Tareas</a>";
-      document.getElementById("dItems").innerHTML = contenido;
-  }
-  
-  function TerminaTarea(idTarea)
-  {
-      var frm = new FormData();
-      var idTarea = idTarea;
-      alert(idTarea);
-  
-      frm.append("idTarea", idTarea);
-  
-      $.ajax({
-          type: "POST",
-          url: "Tareas/actualizaDatos",
-          data: frm,
-          contentType: false,
-          processData: false,
-          success: function (data) {
-              if (data != 0) {
-                 
-                  var Toast = Swal.mixin({
-                      toast: true,
-                      position: 'top-end',
-                      showConfirmButton: false,
-                      timer: 3000
-                    });
-                    
-                  if  (idTarea == 0)
-                     {       
-                                         
-                  Toast.fire({
-                      icon: 'success',
-                      title: 'Registro agregado correctamente.'
-                   
-                  });
-                       }
-                        else
-                           {
-                              Toast.fire({
-                                  icon: 'success',
-                                  title: 'Registro Actualizado correctamente.'
-                               
-                              });
-                           }
-  
-                 
-                  listar();
-  
-              }
-              else {
-                  alert("Ocurrion un error;");
-              }
-  
-          }
-      });
-  }
-  
+    
     //-------------
       //- DONUT CHART -
       //-------------
@@ -177,9 +100,81 @@ $( function() {
       }
 
 
+function crearListado(data) {
+  
+    var contenido = "";
+    contenido += "<span class='dropdown-item dropdown-header'>";
+    contenido += data.length + " Tarea(s) Pendientes</span>";
+    contenido += "<div class='dropdown-divider'></div>";
+    
 
-});
+    for (var i = 0; i < data.length; i++) {
 
+        
+        contenido += "<a href='#' class='dropdown-item'>";
+        contenido += "<i class='fas fa-file mr-2'></i> " + data[i]["nombreTarea"] ;
+        contenido += "<span class='float-right text-muted text-sm'>Completar ";
+        contenido += "<input type='checkbox' onclick='TerminaTarea(" + data[i]["idTarea"] + ")'>" ;
+        contenido += "</span>" ;
+        } 
+        contenido += "<div class='dropdown-divider'></div>";
+        contenido += "<a href='#'' class='dropdown-item dropdown-footer'>Ver Todas las Tareas</a>";
+    document.getElementById("dItems").innerHTML = contenido;
+}
+
+function TerminaTarea(idTarea)
+{
+    var frm = new FormData();
+    var idTarea = idTarea;
+    alert(idTarea);
+
+    frm.append("idTarea", idTarea);
+
+    $.ajax({
+        type: "POST",
+        url: "Tareas/actualizaDatos",
+        data: frm,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            if (data != 0) {
+               
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                  });
+                  
+                if  (idTarea == 0)
+                   {       
+                                       
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Registro agregado correctamente.'
+                 
+                });
+                     }
+                      else
+                         {
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Registro Actualizado correctamente.'
+                             
+                            });
+                         }
+
+               
+                listar();
+
+            }
+            else {
+                alert("Ocurrion un error;");
+            }
+
+        }
+    });
+}
 
   
    
