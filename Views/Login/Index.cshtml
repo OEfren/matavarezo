@@ -1,0 +1,52 @@
+@{
+    Layout = "";   
+    ViewData["Title"] = "Iniciar Sesion";
+}
+@model TareasApp.Models.ViewModel.UsuarioVM
+<head>
+   <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/Adminlte/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Adminlte/dist/css/adminlte.min.css">
+</head> 
+<body class="hold-transition login-page">
+      <div class="login-box">
+          <div class="login-logo">
+            <a href="../../index2.html"><b>Mis</b>Tareas</a>
+          </div>
+          <!-- /.login-logo -->
+            <div class="card">
+                  <div class="card-body login-card-body">
+                      <p class="login-box-msg">Iniciar Sesion</p>
+                      <form asp-action ="LogIn" asp-controller="Login" id="LogIn" >
+                          <div class="input-group mb-3">
+                      
+                              <input type="text" asp-for="Email" placeholder="Email" class="form-control">
+                              <div class="input-group-append">
+                                  <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                  </div>
+                                </div>
+                              <span asp-validation-for="Email"></span>
+                            
+                          </div>
+                          <div class="input-group mb-3">
+                                  <input type="password" asp-for = "Password" placeholder="Password" class="form-control">
+                                  <div class="input-group-append">
+                                  <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                  </div>
+                                </div>
+                          <span asp-validation-for="Password"></span>
+                            
+                          </div>
+                          <div class="row">
+                              <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                          </div>  
+                      </form>
+                  </div>
+            </div>
+      </div>         
+ </body> 

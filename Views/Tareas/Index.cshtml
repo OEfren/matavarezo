@@ -1,0 +1,65 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <h2>Tareas</h2>
+        <button type="button" onclick="abrirModal(0)" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i
+                class="fas fa-plus-square"></i></button>
+        <hr>
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Tareas de Usuarios</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div id="tabla">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Main content -->
+</div>
+<!-- End  Content Wrapper -->
+
+
+<div id="myModal" class="modal fade" role="dialog">
+
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="titleModal" class="modal-title">Agregar Nueva Tarea</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table style="width:80%;margin:auto">
+                    <tr>
+                        <td style="width:40%">Id Tarea</td>
+                        <td style="width:60%"><input type="text" class="borrar form-control" id="TxtIdTarea"
+                                readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:40%">Nombre Tarea</td>
+                        <td style="width:60%"><input type="text" class="borrar form-control obligatorio"
+                                id="txtTarea" /></td>
+                    </tr>
+                    <partial name="_ComboUsuarios"></partial>
+                    <partial name="_ComboEstatusTareas"></partial>
+                    <partial name="_ComboCategorias"></partial>
+
+                  </table>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button id="btnAgregar" onclick="Agregar()" type="button" class="btn btn-success">Guardar</button>
+                <button id="btnCancelar" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Adminlte/plugins/jquery/jquery.min.js"></script>
+<script src="~/Js/Tareas.js"></script>
+
