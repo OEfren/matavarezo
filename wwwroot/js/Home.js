@@ -1,6 +1,7 @@
 
-  listar();
-
+    $( document ).ready(function() {
+        listar();// js goes in here.
+      });  
 
   function listar() {
        var IdUsuario =  document.getElementById("IdUsuario").value
@@ -18,7 +19,6 @@
       $.get("Home/ListarTareasPorEstatus/?IdUsuario=" + IdUsuario, function (data) {  
            Grafica2(data);
            }) 
-  
          
   }
     
@@ -28,7 +28,7 @@
       // Get context with jQuery - using jQuery's .get() method.
    function Grafica1(data)
    {
-      console.log(data);
+       
       var labels = [], datas = [];
       
       for (var i = 0; i < data.length; i++) {
@@ -36,7 +36,6 @@
           datas.push(data[i]["idTarea"]);
       }
   
-     
           var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
           var donutData        = {
             labels:labels,
@@ -48,7 +47,7 @@
               }
             ]
           }
-          var donutOptions     = {
+          var donutOptions= {
             maintainAspectRatio : false,
             responsive : true,
           }
@@ -59,14 +58,14 @@
             data: donutData,
             options: donutOptions
           })
-  }
-  
+        }
+        
        //-------------
       //- DONUT CHART -
       //-------------
       function Grafica2(data)
       { 
-          console.log(data);
+          
           var labels = [], datas = [];
           
           for (var i = 0; i < data.length; i++) {
@@ -74,9 +73,8 @@
               datas.push(data[i]["idstatus"]);
           }
   
-         
-              var donutChartCanvas = $('#donutChart1').get(0).getContext('2d')
-              var donutData        = {
+              var donutChartCanvas = $('#donutChart1').get(0).getContext('2d') 
+              var donutData= {
               labels:labels,
               datasets: [
                   {
@@ -96,6 +94,8 @@
               data: donutData,
               options: donutOptions
               })
+       
+           
    
       }
 
@@ -126,7 +126,7 @@ function TerminaTarea(idTarea)
 {
     var frm = new FormData();
     var idTarea = idTarea;
-    alert(idTarea);
+   
 
     frm.append("idTarea", idTarea);
 
@@ -175,6 +175,7 @@ function TerminaTarea(idTarea)
         }
     });
 }
+
 
   
    

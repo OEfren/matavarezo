@@ -81,7 +81,7 @@ namespace TareasApp.Controllers
                                         NombreCategoria = x.IdCategoriaNavigation.Nombre , 
                                         Asignado = x.IdUsuarioNavigation .Nombre ,
                                         FechaCreacion = x.FechaCreacion ,
-                                        FechaTerminacion  = x.FechaCreacion == null ? x.FechaCreacion.ToString() : "" ,
+                                        FechaTerminacion  = x.FechaCreacion,
                                         Estatus = x.IdStatusNavigation.Nombre  
                                 }).ToList();  
                         
@@ -161,6 +161,28 @@ namespace TareasApp.Controllers
            
 
             return nregistrosAfectados;
+        }
+
+       public JsonResult recuperarDatos(int IdTarea)
+        {
+            using (Dbx)
+            {
+                var oTareas = Dbx.Tareas.
+                                     Where(p => p.IdTarea == IdTarea)
+
+                 .Select(x => new
+                 {
+                     llaveId = x.IdTarea,
+                     Nombre = x.Nombre,
+                     x.IdStatus,
+                     x.IdCategoria ,
+                     x.IdUsuario 
+
+                 }).First();
+
+                return Json(oTareas);
+
+            }
         }
 
    }

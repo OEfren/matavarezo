@@ -1,4 +1,6 @@
-listar();
+$( document ).ready(function() {
+    listar();// js goes in here.
+});  
 
 function listar() {
      
@@ -117,6 +119,7 @@ function abrirModal(id) {
     var controlesObligatorios = document.getElementsByClassName("obligatorio");
     var ncontroles = controlesObligatorios.length;
 
+
     for (i = 0; i < ncontroles; i++) {
         controlesObligatorios[i].parentNode.classList.remove("error");
     }
@@ -130,12 +133,16 @@ function abrirModal(id) {
           
         document.getElementById("titleModal").innerText = "Actualizar Tarea";
            
-        $.get("Usuarios/recuperarDatos/?IdUsuario=" + id, function(data) 
+        $.get("Tareas/recuperarDatos/?IdTarea=" + id, function(data) 
         {
-    
-            document.getElementById("TxtIdUsuario").value = data.llaveId;
-            document.getElementById("txtEmail").value = data.email;
-            document.getElementById("txtNombre").value = data.nombre;   
+           
+
+            document.getElementById("TxtIdTarea").value = data.llaveId;
+            document.getElementById("txtTarea").value = data.nombre;
+            $("#cboUsuarios").val(data.idUsuario).trigger("change");
+            $("#cboCategorias").val(data.idCategoria).trigger("change");
+            $("#cboEstatusTareas").val(data.idStatus).trigger("change");
+        
      
         });
 

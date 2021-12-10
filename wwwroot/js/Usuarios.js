@@ -124,15 +124,12 @@ function abrirModal(id) {
            
         $.get("Usuarios/recuperarDatos/?IdUsuario=" + id, function(data) 
         {
-           
-            console.log(data);
-
             document.getElementById("TxtIdUsuario").value = data.llaveId;
             document.getElementById("txtEmail").value = data.email;
             document.getElementById("txtNombre").value = data.nombre;
-          /*   document.getElementById("CboEstatus").value = data.idEstatus;
-            document.getElementById("cboTipoUsuario").value = data.idTipoUsuario; */
-     
+            $("#CboEstatus").val(data.idEstatusUsuario).trigger("change");
+            $("#cboTipoUsuario").val(data.idTipoUsuario).trigger("change");
+                 
         });
 
     }
